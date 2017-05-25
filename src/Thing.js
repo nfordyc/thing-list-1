@@ -11,6 +11,12 @@ class Thing extends Component{
     }
   }
 
+  updateDate = (ev) => {
+    const { thing, saveThing } = this.props
+    thing.dueDate = ev.target.value
+    saveThing(thing)
+  }
+
   updateName = (ev) => {
     const { thing, saveThing } = this.props
     thing.name = ev.target.value
@@ -47,8 +53,9 @@ class Thing extends Component{
             onKeyPress={this.blurOnEnter}
             ref={input => this.nameInput = input}
           />
+          <input className="due-date" value={this.props.thing.dueDate} type="date" onChange={this.updateDate} />
           <span>
-          <i className={this.props.thing.completed ? "fa fa-check" : "fa fa-times"}></i>
+            <i className={this.props.thing.completed ? "fa fa-check" : "fa fa-times"}></i>
           </span>
           <Actions thing={thing} removeThing={removeThing}/>
         </div>
