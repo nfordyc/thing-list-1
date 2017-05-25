@@ -5,6 +5,7 @@ import Header from './Header'
 import ThingList from './ThingList'
 import AddThingButton from './AddThingButton'
 import SignOut from './SignOut'
+import SignIn from './SignIn'
 import base from './base'
 
 class App extends Component {
@@ -66,6 +67,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <SignIn />
         <SignOut />
         <AddThingButton addThing={this.addThing} />
         <ThingList
