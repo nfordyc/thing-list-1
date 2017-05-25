@@ -25,7 +25,14 @@ class App extends Component {
     return {
       id: `thing-${Date.now()}`,
       name: '',
+      completed: false,
     }
+  }
+
+  completeThing = (thing) => {
+    const things = {...this.state.things}
+    things[thing.id].completed = !things[thing.id].completed
+    this.setState({ things })
   }
 
   addThing = () => {
@@ -51,6 +58,7 @@ class App extends Component {
     const actions = {
       saveThing: this.saveThing,
       removeThing: this.removeThing,
+      completeThing: this.completeThing
     }
 
     return (

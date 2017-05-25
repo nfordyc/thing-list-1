@@ -17,18 +17,28 @@ class Thing extends Component{
     saveThing(thing)
   }
 
+  checked = (ev) => {
+    const { thing, completeThing } = this.props
+    completeThing(thing)
+  }
+
   blurOnEnter = (ev) => {
     if (ev.key === 'Enter') {
       ev.preventDefault()
       ev.target.blur()
     }
   }
+
+  isComplete = (ev) => {
+    const { thing } = this.props
+    return thing.completed
+  }
   
   render(){
-    const { thing, removeThing } = this.props
+    const { thing, removeThing, completeThing } = this.props
     return (
       <li className="Thing">
-        <input type="checkbox" value="on" />
+        <input type="checkbox" value="on" onChange={this.checked} checked={this.props.thing.completed}/>
         <div className="details">
           <ContentEditable
             className="name"
@@ -37,6 +47,9 @@ class Thing extends Component{
             onKeyPress={this.blurOnEnter}
             ref={input => this.nameInput = input}
           />
+          <span>
+          <i className={this.props.thing.completed ? "fa fa-check" : "fa fa-times"}></i>
+          </span>
           <Actions thing={thing} removeThing={removeThing}/>
         </div>
       </li>
