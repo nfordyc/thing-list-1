@@ -31,7 +31,7 @@ state = {
 
   syncThings = () => {
     base.syncState(
-      'things',
+      `${this.state.uid}/things`,
       {
         context: this,
         state: 'things'
@@ -44,7 +44,7 @@ state = {
       id: `thing-${Date.now()}`,
       name: '',
       completed: false,
-      dueDate: 'mm/dd/yyyy',
+      dueDate: '',
     }
   }
 
